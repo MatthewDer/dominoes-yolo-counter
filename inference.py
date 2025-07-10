@@ -35,4 +35,3 @@ for result in results:
 #       print(names[name][1])
 #    for name, count in names:
 #       sum = sum + (count * dominoes_info[name])
-   #print(sum)
