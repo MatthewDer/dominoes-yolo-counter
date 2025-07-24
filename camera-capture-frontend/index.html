@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
-    <style>
+    <!-- <style>
       #videoContainer {
         position: relative;
         width: 640px;
@@ -21,60 +21,10 @@
       #canvas {
         display: none;
       }
-    </style>
+    </style> -->
   </head>
   <body>
     <div id="root"></div>
-
-    <div id="videoContainer">
-      <video id="webcamVideo" autoplay playsinline></video>
-      <canvas id="canvas"></canvas>
-    </div>
-    <button id="toggleSnapshot">Take Snapshot</button>
-
-    <script>
-      let toggleButton = document.getElementById('toggleSnapshot');
-      let canvas = document.getElementById('canvas');
-      let webcamVideo = document.getElementById('webcamVideo');
-
-      const constraints = {
-        video: {
-          width: 640,
-          height: 640,
-          facingMode: "environment",
-        }
-      };
-      
-      let videoStatus = 'Setup';
-
-      toggleButton.addEventListener('click', async function () {
-        if (videoStatus == 'Setup') {
-          let stream = null;
-          try {
-            stream = await navigator.mediaDevices.getUserMedia(constraints);
-          } catch(error) {
-              alert(error.message);
-              return;
-          }
-          webcamVideo.srcObject = stream;
-          videoStatus = 'Playing';
-        } else if (videoStatus == 'Playing') {
-            webcamVideo.pause();
-            canvas.width = webcamVideo.videoWidth;
-            canvas.height = webcamVideo.videoHeight;
-            canvas.getContext('2d').drawImage(webcamVideo, 0, 0, canvas.width, canvas.height);
-            canvas.style.display = 'block';
-            toggleButton.textContent = 'Resume Video';
-            videoStatus = 'Paused';
-        } else {
-            webcamVideo.play();
-            canvas.style.display = 'none';
-            toggleButton.textContent = 'Take Snapshot';
-            videoStatus = 'Playing';
-        }      
-      }); 
-    
-    </script>
 
     <script type="module" src="/src/main.tsx"></script>
   </body>
